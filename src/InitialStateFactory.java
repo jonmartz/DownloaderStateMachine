@@ -50,7 +50,7 @@ public class InitialStateFactory {
      * @throws UnexpectedException
      */
     public List<AbstractState> getInitialStates(Enum.StateNames name) throws UnexpectedException {
-        List<AbstractState> to_retrn = new ArrayList<>();;
+        List<AbstractState> to_retrn = new ArrayList<>();
         if(!this.stateToInitialState.containsKey(name))
         {
 

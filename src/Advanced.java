@@ -3,6 +3,9 @@ public class Advanced extends UserStatus {
     public Advanced()
     {
         super();
-        //Enter rest of the code if necessary
+        Context.getInstance().speed = 1.2;
+        if (Context.getInstance().points>6){
+            Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANEGERING_USER_STATUS,Enum.StateNames.PROFESSIONAL);
+        }
     }
 }

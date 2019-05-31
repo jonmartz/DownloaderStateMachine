@@ -12,4 +12,8 @@ public class Enum {
     {
         GETTING_REQUESTS,IDENTIFY_INTERNET,MANAGING_REQUESTS,PLAYING_MOVIES,MANEGERING_USER_STATUS
     }
+    public enum DownloadTypes
+    {
+        MOVIE, REGULAR
+    }
 }

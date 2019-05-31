@@ -15,6 +15,10 @@ public class Context implements IState{
     private Map<Enum.OnRegionNames,Integer> locationMap;//The map that associates the region name to the location of the current state in the 'currentState' list
     private boolean isOn;//True iff the device in
     public  boolean hasInternet = true;
+    public int points;
+    public double speed = 1.0;
+    public int playTime = 0;
+    public Download download;
     private static Context context;//The context
     private Context() {
 
@@ -63,9 +67,6 @@ public class Context implements IState{
         } catch (UnexpectedException e) {
             e.printStackTrace();
         }
-
-
-
     }
 
     /**

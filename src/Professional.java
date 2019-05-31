@@ -2,6 +2,6 @@ public class Professional extends UserStatus {
     public Professional()
     {
         super();
-        //Enter rest of the code if necessary
+        Context.getInstance().speed = 1.2;
     }
 }
