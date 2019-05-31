@@ -1,14 +1,21 @@
-import java.time.LocalDate;
-
-
+/**
+ * This class represents a movie
+ */
 public class Movie {
 
-    private String name;
-    private int lengthInSeconds;
-    private double size;
-    private double downloadProgress;
-    private long startDownload;
-    private double  downloadSpeed;
+    private String name;//The name of the movie
+    private int lengthInSeconds;//The length of the movie
+    private double size;//The size of the movie
+    private double downloadProgress;//The part of the movie that was downloaded (from 0 to 1)
+    private long startDownload;//The time we started to download
+    private double  downloadSpeed;//The download speed
+
+    /**
+     * The constructor
+     * @param name - The name of the movie
+     * @param lengthInSeconds - The length of the movie
+     * @param size - The size of the movie
+     */
     public Movie(String name, int lengthInSeconds, double size)
     {
         this.name = name;
@@ -18,6 +25,9 @@ public class Movie {
         this.startDownload = -1;
     }
 
+    /**
+     * This function will start the download
+     */
     public void startDownload()
     {
         this.startDownload =System.currentTimeMillis();
@@ -32,6 +42,10 @@ public class Movie {
                 downloadSpeed =1.5;
         }
     }
+
+    /**
+     * This function will stop the download
+     */
     public void stopDownload()
     {
         checkDownloadProgress();
@@ -39,10 +53,20 @@ public class Movie {
 
 
     }
+
+    /**
+     * This function will return true IFF the movie is mid download
+     * @return
+     */
     public boolean isDownloading()
     {
         return !(startDownload == -1 || downloadProgress == 1);
     }
+
+    /**
+     * This function will return the current download progress
+     * @return - The current download progress
+     */
     public double checkDownloadProgress()
     {
         //If the file is not in the middle of download
