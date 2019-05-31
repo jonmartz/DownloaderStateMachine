@@ -1,6 +1,6 @@
 public class InternetOff extends On {
     public InternetOff() {
-        System.out.println("enter InternetOff state");
+        super();
         Main.hasInternet = false;
     }
 
@@ -9,8 +9,5 @@ public class InternetOff extends On {
         return new InternetOn();
     }
 
-    @Override
-    public void exit() {
-        System.out.println("exit InternetOff state");
-    }
+
 }

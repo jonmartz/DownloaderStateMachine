@@ -1,4 +1,15 @@
 public abstract class AbstractState implements IState {
+
+    protected AbstractState()
+    {
+        Class<?> enclosingClass = this.getClass().getEnclosingClass();
+        if (enclosingClass != null) {
+
+            System.out.println("enter "+enclosingClass.getName()+" state");
+        } else {
+            System.out.println("enter "+this.getClass().getName()+" state");
+        }
+    }
     @Override
     public AbstractState turnOff() {
         return this;
@@ -96,6 +107,11 @@ public abstract class AbstractState implements IState {
 
     @Override
     public void exit() {
-
+        Class<?> enclosingClass = this.getClass().getEnclosingClass();
+        if (enclosingClass != null) {
+            System.out.println("exit "+enclosingClass.getName()+" state");
+        } else {
+            System.out.println("exit "+this.getClass().getName()+" state");
+        }
     }
 }

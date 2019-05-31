@@ -1,6 +1,5 @@
 public class Off extends AbstractState {
-    public Off() {
-        System.out.println("enter Off state");
+    public Off(){super();
     }
 
     @Override
@@ -9,8 +8,5 @@ public class Off extends AbstractState {
         return new On();
     }
 
-    @Override
-    public void exit() {
-        System.out.println("exit Off state");
-    }
+
 }
