@@ -3,10 +3,6 @@ public class On extends AbstractState {
         super();
     }
 
-    @Override
-    public void turnOff() {
-        Context.getInstance().changeToOff();
-    }
 
 
 }

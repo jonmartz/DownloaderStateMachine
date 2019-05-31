@@ -8,9 +8,9 @@ public class Main {
     public static void main(String[] args) throws UnexpectedException {
 	// write your code here
         Context c = Context.getInstance();
-        c.changeToOn();
+        c.turnOn();
 
-        c.changeStateIfOn(Enum.OnRegionNames.MANEGERING_USER_STATUS, Enum.StateNames.PROFESSIONAL);
+        c.internetOff();
        // print(factory.getInitialStates(StateNames.ON));
 
 

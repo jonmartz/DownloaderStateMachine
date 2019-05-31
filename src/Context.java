@@ -10,7 +10,7 @@ import java.util.Map;
  * since it makes no sense to create multiple instances of this class we will implement is using Singleton DP
  */
 
-public class Context {
+public class Context implements IState{
     private List<AbstractState> currentStates;//The list of current states
     private Map<Enum.OnRegionNames,Integer> locationMap;//The map that associates the region name to the location of the current state in the 'currentState' list
     private boolean isOn;//True iff the device in
@@ -39,7 +39,7 @@ public class Context {
     /**
      * This function will change the machine to ON state
      */
-    public void changeToOn()
+    private void changeToOn()
     {
         this.isOn = true;
         try {
@@ -53,7 +53,7 @@ public class Context {
     /**
      * This function will change the machine to OFF state
      */
-    public void changeToOff()
+    private void changeToOff()
     {
         this.isOn = false;
         try {
@@ -97,4 +97,154 @@ public class Context {
         }
     }
 
+    @Override
+    public void turnOff() {
+        this.changeToOff();
+    }
+
+    @Override
+    public void turnOn() {
+        this.changeToOn();
+    }
+
+    @Override
+    public void internetOn() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).internetOn();
+        }
+    }
+
+    @Override
+    public void internetOff() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).internetOff();
+        }
+    }
+
+    @Override
+    public void downloadFinished() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).downloadFinished();
+        }
+    }
+
+    @Override
+    public void downloadAborted() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).downloadAborted();
+        }
+    }
+
+    @Override
+    public void downloadPaused() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).downloadPaused();
+        }
+    }
+
+    @Override
+    public void downloadResumed() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).downloadResumed();
+        }
+    }
+
+    @Override
+    public void downloadError() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).downloadError();
+        }
+    }
+
+    @Override
+    public void downloadReset() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).downloadReset();
+        }
+    }
+
+    @Override
+    public void gettingRequest() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).gettingRequest();
+        }
+    }
+
+    @Override
+    public void fileRequest() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).fileRequest();
+        }
+    }
+
+    @Override
+    public void processRequest() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).processRequest();
+        }
+    }
+
+    @Override
+    public void movieOff() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).movieOff();
+        }
+    }
+
+    @Override
+    public void movieOn() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).movieOn();
+        }
+    }
+
+    @Override
+    public void holdMovie() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).holdMovie();
+        }
+    }
+
+    @Override
+    public void restartMovie() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).restartMovie();
+        }
+    }
+
+    @Override
+    public void errorFixed() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).errorFixed();
+        }
+    }
+
+    @Override
+    public void resume() {
+        for(int i=0;i<this.currentStates.size();i++)
+        {
+            this.currentStates.get(i).resume();
+        }
+    }
+
+    @Override
+    public void exit() {
+        //There is no meaning?
+    }
 }
