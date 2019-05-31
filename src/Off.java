@@ -3,9 +3,9 @@ public class Off extends AbstractState {
     }
 
     @Override
-    public AbstractState turnOn() {
-        this.exit();
-        return new On();
+    public void turnOn() {
+
+        Context.getInstance().changeToOn();
     }
 
 

@@ -5,8 +5,8 @@ public class InternetOff extends On {
     }
 
     @Override
-    public AbstractState internetOn() {
-        return new InternetOn();
+    public void internetOn() {
+        Context.getInstance().changeStateIfOn(Enum.OnRegionNames.IDENTIFY_INTERNET,Enum.StateNames.INTERNET_ON);
     }
 
 

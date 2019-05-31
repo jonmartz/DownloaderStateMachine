@@ -4,9 +4,8 @@ public class On extends AbstractState {
     }
 
     @Override
-    public AbstractState turnOff() {
-        this.exit();
-        return new Off();
+    public void turnOff() {
+        Context.getInstance().changeToOff();
     }
 
 

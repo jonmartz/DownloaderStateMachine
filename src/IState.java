@@ -1,28 +1,28 @@
 public interface IState {
-    AbstractState turnOff();
-    AbstractState turnOn();
+    void turnOff();
+    void turnOn();
     // Internet
-    AbstractState internetOn();
-    AbstractState internetOff();
+    void internetOn();
+    void internetOff();
     // Downloads
-    AbstractState downloadFinished();
-    AbstractState downloadAborted();
-    AbstractState downloadPaused();
-    AbstractState downloadResumed();
-    AbstractState downloadError();
-    AbstractState downloadReset();
+    void downloadFinished();
+    void downloadAborted();
+    void downloadPaused();
+    void downloadResumed();
+    void downloadError();
+    void downloadReset();
     // Requests
-    AbstractState gettingRequest();
-    AbstractState fileRequest();
-    AbstractState processRequest();
+    void gettingRequest();
+    void fileRequest();
+    void processRequest();
     // Movie
-    AbstractState movieOff();
-    AbstractState movieOn();
-    AbstractState holdMovie();
-    AbstractState restartMovie();
+    void movieOff();
+    void movieOn();
+    void holdMovie();
+    void restartMovie();
     // TODO: what is that functions category?
-    AbstractState errorFixed();
-    AbstractState resume();
+    void errorFixed();
+    void resume();
     //entery and exit
     void exit();
 

@@ -4,11 +4,7 @@ public class AcceptingRequest extends On {
         Main.hasInternet = true;
     }
 
-    @Override
-    public AbstractState internetOff() {
-        this.exit();
-        return new InternetOff();
-    }
+
 
 
 }
