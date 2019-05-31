@@ -1,5 +1,7 @@
 public class Context {
-    public IState currentState;
+    public AbstractState currentState;
 
-
+    public Context() {
+        this.currentState = new Off();
+    }
 }

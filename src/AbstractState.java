@@ -1,96 +1,101 @@
 public abstract class AbstractState implements IState {
     @Override
-    public IState turnOff() {
+    public AbstractState turnOff() {
         return this;
     }
 
     @Override
-    public IState turnOn() {
+    public AbstractState turnOn() {
         return this;
     }
 
     @Override
-    public IState internetOn() {
+    public AbstractState internetOn() {
         return this;
     }
 
     @Override
-    public IState internetOff() {
+    public AbstractState internetOff() {
         return this;
     }
 
     @Override
-    public IState downloadFinished() {
+    public AbstractState downloadFinished() {
         return this;
     }
 
     @Override
-    public IState downloadAborted() {
+    public AbstractState downloadAborted() {
         return this;
     }
 
     @Override
-    public IState downloadPaused() {
+    public AbstractState downloadPaused() {
         return this;
     }
 
     @Override
-    public IState downloadResumed() {
+    public AbstractState downloadResumed() {
         return this;
     }
 
     @Override
-    public IState downloadError() {
+    public AbstractState downloadError() {
         return this;
     }
 
     @Override
-    public IState downloadReset() {
+    public AbstractState downloadReset() {
         return this;
     }
 
     @Override
-    public IState gettingRequest() {
+    public AbstractState gettingRequest() {
         return this;
     }
 
     @Override
-    public IState fileRequest() {
+    public AbstractState fileRequest() {
         return this;
     }
 
     @Override
-    public IState processRequest() {
+    public AbstractState processRequest() {
         return this;
     }
 
     @Override
-    public IState movieOff() {
+    public AbstractState movieOff() {
         return this;
     }
 
     @Override
-    public IState movieOn() {
+    public AbstractState movieOn() {
         return this;
     }
 
     @Override
-    public IState holdMovie() {
+    public AbstractState holdMovie() {
         return this;
     }
 
     @Override
-    public IState restartMovie() {
+    public AbstractState restartMovie() {
         return this;
     }
 
     @Override
-    public IState errorFixed() {
+    public AbstractState errorFixed() {
         return this;
     }
 
     @Override
-    public IState resume() {
+    public AbstractState resume() {
         return this;
+    }
+
+    @Override
+    public void exit() {
+
     }
 }
