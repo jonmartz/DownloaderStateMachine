@@ -1,6 +1,6 @@
 package com.company;
 
-public class AbstractState implements IState {
+public abstract class AbstractState implements IState {
     @Override
     public IState turnOff() {
         return null;
