@@ -30,6 +30,13 @@ public class Context implements IState{
         this.currentStates = new ArrayList<>();
         changeToOff();
     }
+
+    public AbstractState getOnCurrentState(Enum.OnRegionNames name)
+    {
+        if(!this.isOn)
+            return null;
+        return this.currentStates.get(locationMap.get(name));
+    }
     public static Context getInstance()
     {
         if(context == null)
@@ -76,12 +83,17 @@ public class Context implements IState{
      */
     public boolean changeStateIfOn(Enum.OnRegionNames rName, Enum.StateNames sName)
     {
-        if(!isOn || !this.locationMap.containsKey(rName))
+        if(!isOn || !this.locationMap.containsKey(rName) || sName == Enum.StateNames.INTERNET_ON || sName == Enum.StateNames.INTERNET_OFF)
             return false;
 
         int loc = this.locationMap.get(rName);
         this.currentStates.get(loc).exit();
-        this.currentStates.set(loc,InitialStateFactory.getInstance().createInstance(sName));
+        try {
+            this.currentStates.set(loc,InitialStateFactory.getInstance().getInitialStates(sName).get(0));
+        } catch (UnexpectedException e) {
+            e.printStackTrace();
+            return false;
+        }
 
         return true;
     }
