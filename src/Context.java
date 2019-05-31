@@ -6,6 +6,7 @@ import java.util.Map;
 
 /**
  * This class represent the context, This class will manage the state transactions
+ * In addition this class will contain all the global variables
  * since it makes no sense to create multiple instances of this class we will implement is using Singleton DP
  */
 
@@ -13,7 +14,7 @@ public class Context {
     private List<AbstractState> currentStates;//The list of current states
     private Map<Enum.OnRegionNames,Integer> locationMap;//The map that associates the region name to the location of the current state in the 'currentState' list
     private boolean isOn;//True iff the device in
-
+    public  boolean hasInternet = true;
     private static Context context;//The context
     private Context() {
 

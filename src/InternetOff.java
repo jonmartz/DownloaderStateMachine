@@ -1,7 +1,7 @@
 public class InternetOff extends On {
     public InternetOff() {
         super();
-        Main.hasInternet = false;
+        Context.getInstance().hasInternet=false;
     }
 
     @Override

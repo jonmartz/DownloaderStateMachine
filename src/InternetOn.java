@@ -1,7 +1,7 @@
 public class InternetOn extends On {
     public InternetOn() {
         super();
-        Main.hasInternet = true;
+        Context.getInstance().hasInternet=false;
     }
 
 
