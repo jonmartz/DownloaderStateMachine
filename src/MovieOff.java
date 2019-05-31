@@ -7,9 +7,9 @@ public class MovieOff extends On {
 
     @Override
     public void movieOn() {
-        Download download = Context.getInstance().download;
-        if (download != null && download.type == Enum.DownloadTypes.MOVIE && download.progress>=0.2){
-            Context.getInstance().changeStateIfOn(Enum.OnRegionNames.PLAYING_MOVIES,Enum.StateNames.MOVIE_ON);
+        Movie movie = Context.getInstance().movie;
+        if (movie != null && movie.checkDownloadProgress()>=0.2){
+            Context.getInstance().changeStateIfOn(Enum.OnRegionNames.PLAYING_MOVIES,Enum.StateNames.PLAYING_MOVIE);
         }
     }
 }

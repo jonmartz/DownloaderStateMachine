@@ -18,7 +18,7 @@ public class Context implements IState{
     public int points;
     public double speed = 1.0;
     public int playTime = 0;
-    public Download download;
+    public Movie movie;
     private static Context context;//The context
     private Context() {
 

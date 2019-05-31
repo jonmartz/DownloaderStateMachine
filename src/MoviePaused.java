@@ -2,6 +2,10 @@ public class MoviePaused extends MovieOn {
     public MoviePaused()
     {
         super();
-        //Enter rest of the code if necessary
+    }
+
+    @Override
+    public void resume() {
+        Context.getInstance().changeStateIfOn(Enum.OnRegionNames.PLAYING_MOVIES,Enum.StateNames.PLAYING_MOVIE);
     }
 }
