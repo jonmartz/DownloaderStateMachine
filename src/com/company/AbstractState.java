@@ -3,96 +3,96 @@ package com.company;
 public abstract class AbstractState implements IState {
     @Override
     public IState turnOff() {
-        return null;
+        return this;
     }
 
     @Override
     public IState turnOn() {
-        return null;
+        return this;
     }
 
     @Override
     public IState internetOn() {
-        return null;
+        return this;
     }
 
     @Override
     public IState internetOff() {
-        return null;
+        return this;
     }
 
     @Override
     public IState downloadFinished() {
-        return null;
+        return this;
     }
 
     @Override
     public IState downloadAborted() {
-        return null;
+        return this;
     }
 
     @Override
     public IState downloadPaused() {
-        return null;
+        return this;
     }
 
     @Override
     public IState downloadResumed() {
-        return null;
+        return this;
     }
 
     @Override
     public IState downloadError() {
-        return null;
+        return this;
     }
 
     @Override
     public IState downloadReset() {
-        return null;
+        return this;
     }
 
     @Override
     public IState gettingRequest() {
-        return null;
+        return this;
     }
 
     @Override
     public IState fileRequest() {
-        return null;
+        return this;
     }
 
     @Override
     public IState processRequest() {
-        return null;
+        return this;
     }
 
     @Override
     public IState movieOff() {
-        return null;
+        return this;
     }
 
     @Override
     public IState movieOn() {
-        return null;
+        return this;
     }
 
     @Override
     public IState holdMovie() {
-        return null;
+        return this;
     }
 
     @Override
     public IState restartMovie() {
-        return null;
+        return this;
     }
 
     @Override
     public IState errorFixed() {
-        return null;
+        return this;
     }
 
     @Override
     public IState resume() {
-        return null;
+        return this;
     }
 }
