@@ -1,5 +1,3 @@
-package com.company;
-
 public abstract class AbstractState implements IState {
     @Override
     public IState turnOff() {
