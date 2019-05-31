@@ -3,5 +3,7 @@ public class RecivedRequest extends On {
     {
         super();
         //Enter rest of the code if necessary
+        Context.getInstance().changeStateIfOn(Enum.OnRegionNames.GETTING_REQUESTS,Enum.StateNames.ACCEPTING_REQUEST);
     }
+
 }
