@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws UnexpectedException {
 
         Context c = Context.getInstance();
-        Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+        Scanner scanner = new Scanner(System.in);
         boolean exit = false;
         while(!exit){
             switch (scanner.nextLine())
@@ -34,8 +34,20 @@ public class Main {
                 case "errorFixed": c.errorFixed(); break;
                 case "resume": c.resume(); break;
                 case "exit": c.exit(); exit = true; break;
+                case "changeDisk": changeDisk(); break;
                 default: System.out.println("invalid input"); break;
             }
+        }
+    }
+
+    private static void changeDisk() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input the size of new disk");
+        try {
+            Context.getInstance().maxDiskCapacity = Double.parseDouble(scanner.nextLine());
+        }
+        catch (NumberFormatException e){
+            System.out.println("You didn't input a number");
         }
     }
 
@@ -57,7 +69,7 @@ public class Main {
     {
         Context c = Context.getInstance();
         if(Context.getInstance().isOn()) {
-            Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+            Scanner scanner = new Scanner(System.in);
 
             System.out.println("Input the name of the movie");
             String name = scanner.nextLine();
