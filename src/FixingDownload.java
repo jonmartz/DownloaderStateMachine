@@ -3,5 +3,6 @@ public class FixingDownload extends ProcessingDownloads {
     {
         super();
         //Enter rest of the code if necessary
+
     }
 }

@@ -7,6 +7,6 @@ public class AcceptingRequest extends On {
     @Override
     public void fileRequest(Movie movie) {
         Context.getInstance().changeToRecivedRequest(movie);
-        Context.getInstance().changeStateIfOn(Enum.OnRegionNames.GETTING_REQUESTS,Enum.StateNames.RECEIVED_REQUEST);
+        //Context.getInstance().changeStateIfOn(Enum.OnRegionNames.GETTING_REQUESTS,Enum.StateNames.RECEIVED_REQUEST);
     }
 }

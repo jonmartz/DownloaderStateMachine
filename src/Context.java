@@ -80,13 +80,23 @@ public class Context implements IState{
             return null;
         return this.currentStates.get(locationMap.get(name));
     }
+
+    public void setOnCurrentState(Enum.OnRegionNames name,AbstractState abstractState)
+    {
+        if(this.isOn)
+            this.currentStates.set(locationMap.get(name),abstractState);
+    }
+
     public static Context getInstance()
     {
         if(context == null)
             context = new Context();
         return context;
     }
-
+    public double getDiskSpace()
+    {
+        return this.maxDiskCapacity - this.disk;
+    }
 
     /**
      * This function will change the machine to ON state
