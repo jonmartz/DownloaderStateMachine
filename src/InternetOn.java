@@ -6,7 +6,6 @@ public class InternetOn extends On {
 
     @Override
     public void internetOff() {
-
         Context.getInstance().changeStateIfOn(Enum.OnRegionNames.IDENTIFY_INTERNET,Enum.StateNames.INTERNET_OFF);
     }
 

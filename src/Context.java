@@ -84,8 +84,7 @@ public class Context implements IState{
      */
     public boolean changeStateIfOn(Enum.OnRegionNames rName, Enum.StateNames sName)
     {
-        if(!isOn || !this.locationMap.containsKey(rName) || sName == Enum.StateNames.INTERNET_ON || sName == Enum.StateNames.INTERNET_OFF)
-            return false;
+        if(!isOn) return false;
 
         int loc = this.locationMap.get(rName);
         this.currentStates.get(loc).exit();
