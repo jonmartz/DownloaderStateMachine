@@ -2,9 +2,7 @@ public class ProcessingRequest extends ProcessingDownloads {
     public ProcessingRequest()
     {
         super();
-
-        Movie movie= Context.getInstance().movieQueue.poll();
-        if(Context.getInstance().hasSpaceFor(movie.getSize())){
+        if(Context.getInstance().hasSpaceFor()){
             Context.getInstance().changeStateIfOn(Enum.OnRegionNames.PROCESSING_DOWNLOADS,Enum.StateNames.DOWNLOADING_REQUEST);
         }
         else{
