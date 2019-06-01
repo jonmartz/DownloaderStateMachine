@@ -18,8 +18,8 @@ public class Context implements IState{
     public int playTime = 0;
     public Movie movie;
     public Queue<Movie> movieQueue;
-    public static double disk=0;
-    public static double maxDiskCapacity=100;
+    public double disk=0;
+    public double maxDiskCapacity=100;
 
     private static Context context;//The context
     private Context() {
@@ -37,8 +37,11 @@ public class Context implements IState{
         changeToOff();
     }
     //checks if there if enough space in the disk
-    public static boolean hasSpaceFor(double movieSize){
-        if(disk+movieSize<=maxDiskCapacity){
+    public boolean hasSpaceFor(){
+
+        if(movie == null)
+            return false;
+        if(disk+this.movie.getSize()<=maxDiskCapacity){
             return true;
         }
         return false;
