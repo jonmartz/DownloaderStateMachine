@@ -2,6 +2,10 @@ public class AwaitingInternet extends ProcessingDownloads {
     public AwaitingInternet()
     {
         super();
-        //Enter rest of the code if necessary
+    }
+
+    @Override
+    public void internetOn() {
+        Context.getInstance().changeStateIfOn(Enum.OnRegionNames.PROCESSING_DOWNLOADS,Enum.StateNames.DOWNLOADING_REQUEST);
     }
 }

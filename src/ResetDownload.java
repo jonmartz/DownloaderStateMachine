@@ -2,6 +2,7 @@ public class ResetDownload extends On {
     public ResetDownload()
     {
         super();
-        //Enter rest of the code if necessary
+        Context.getInstance().movie=null;
+        Context.getInstance().changeStateIfOn(Enum.OnRegionNames.PROCESSING_DOWNLOADS,Enum.StateNames.CHECK_PENDING_DOWNLOAD);
     }
 }

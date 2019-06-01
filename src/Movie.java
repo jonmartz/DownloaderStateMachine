@@ -24,6 +24,13 @@ public class Movie {
         this.downloadProgress=0;
         this.startDownload = -1;
     }
+    /**
+     * This function will return the size of the movie
+     * @return - The size of the movie
+     */
+    public double getSize() {
+        return size;
+    }
 
     /**
      * This function will start the download
@@ -53,6 +60,9 @@ public class Movie {
 
 
     }
+
+
+
 
     /**
      * This function will return true IFF the movie is mid download
