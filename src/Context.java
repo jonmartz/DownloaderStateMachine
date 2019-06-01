@@ -37,8 +37,11 @@ public class Context implements IState{
         changeToOff();
     }
     //checks if there if enough space in the disk
-    public boolean hasSpaceFor(double movieSize){
-        if(disk+movieSize<=maxDiskCapacity){
+    public boolean hasSpaceFor(){
+
+        if(movie == null)
+            return false;
+        if(disk+this.movie.getSize()<=maxDiskCapacity){
             return true;
         }
         return false;
