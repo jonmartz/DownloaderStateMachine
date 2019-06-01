@@ -13,7 +13,7 @@ public interface IState {
     void downloadReset();
     // Requests
     void gettingRequest();
-    void fileRequest();
+    void fileRequest(Movie movie);
     void processRequest();
     // Movie
     void movieOff();

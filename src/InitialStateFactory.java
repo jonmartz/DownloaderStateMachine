@@ -104,11 +104,14 @@ public class InitialStateFactory {
             case PROCESSING_DOWNLOADS: returnState = new ProcessingDownloads(); break;
             case PROCESSING_REQUEST: returnState = new ProcessingRequest(); break;
             case PROFESSIONAL: returnState = new Professional(); break;
-            case RECEIVED_REQUEST: returnState = new RecivedRequest(); break;
             case RESET_DOWNLOAD: returnState = new ResetDownload(); break;
             case USER_STATUS: returnState = new UserStatus(); break;
             default: returnState = null; break;
         }
         return returnState;
+    }
+    public RecivedRequest createRecivedRequest(Movie movie)
+    {
+        return new RecivedRequest(movie);
     }
 }

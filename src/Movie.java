@@ -4,7 +4,7 @@
 public class Movie {
 
     private String name;//The name of the movie
-    private int lengthInSeconds;//The length of the movie
+    private double lengthInSeconds;//The length of the movie
     private double size;//The size of the movie
     private double downloadProgress;//The part of the movie that was downloaded (from 0 to 1)
     private long startDownload;//The time we started to download
@@ -17,7 +17,7 @@ public class Movie {
      * @param lengthInSeconds - The length of the movie
      * @param size - The size of the movie
      */
-    public Movie(String name, int lengthInSeconds, double size)
+    public Movie(String name, double lengthInSeconds, double size)
     {
         finishedOrabourted=false;
         this.name = name;
@@ -26,6 +26,11 @@ public class Movie {
         this.downloadProgress=0;
         this.startDownload = -1;
     }
+
+    public String getName() {
+        return name;
+    }
+
     /**
      * This function will return the size of the movie
      * @return - The size of the movie
