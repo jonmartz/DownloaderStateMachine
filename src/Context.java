@@ -23,7 +23,7 @@ public class Context implements IState{
 
     private static Context context;//The context
     private Context() {
-        movieQueue= new LinkedList<Movie>();
+        movieQueue= new LinkedList<>();
         locationMap = new HashMap<>();
         //GETTING_REQUESTS,IDENTIFY_INTERNET,MANAGING_REQUESTS,PLAYING_MOVIES,MANAGERING_USER_STATUS
         //{Enum.StateNames.ACCEPTING_REQUEST,Enum.StateNames.INTERNET_ON,Enum.StateNames.PROCESSING_DOWNLOADS,Enum.StateNames.MOVIE_OFF,Enum.StateNames.USER_STATUS
@@ -52,7 +52,7 @@ public class Context implements IState{
      */
     public boolean tryToAddToQueue(Movie movie)
     {
-        if(this.movieQueue.size()>=1 || movie!=null)
+        if(this.movieQueue.size()>=1 || this.movie!=null)
         {
             return false;
         }
