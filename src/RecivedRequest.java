@@ -2,6 +2,7 @@ public class RecivedRequest extends On {
     public RecivedRequest(Movie movie)
     {
         super();
+
         //Enter rest of the code if necessary
         boolean flag = Context.getInstance().tryToAddToQueue(movie);
         if(!flag)
