@@ -9,6 +9,7 @@ public class Movie {
     private double downloadProgress;//The part of the movie that was downloaded (from 0 to 1)
     private long startDownload;//The time we started to download
     private double  downloadSpeed;//The download speed
+    public boolean finishedOrabourted;
 
     /**
      * The constructor
@@ -18,11 +19,16 @@ public class Movie {
      */
     public Movie(String name, int lengthInSeconds, double size)
     {
+        finishedOrabourted=false;
         this.name = name;
         this.lengthInSeconds = lengthInSeconds;
         this.size = size;
         this.downloadProgress=0;
         this.startDownload = -1;
+    }
+
+    public double getSize() {
+        return size;
     }
 
     /**

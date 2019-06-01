@@ -1,8 +1,6 @@
 import java.rmi.UnexpectedException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.Queue;
 
 /**
  * This class represent the context, This class will manage the state transactions
@@ -19,9 +17,13 @@ public class Context implements IState{
     public double speed = 1.0;
     public int playTime = 0;
     public Movie movie;
+    public Queue<Movie> movieQueue;
+    public static double disk=0;
+    public static double maxDiskCapacity=100;
+
     private static Context context;//The context
     private Context() {
-
+        movieQueue= new LinkedList<Movie>();
         locationMap = new HashMap<>();
         //GETTING_REQUESTS,IDENTIFY_INTERNET,MANAGING_REQUESTS,PLAYING_MOVIES,MANAGERING_USER_STATUS
         //{Enum.StateNames.ACCEPTING_REQUEST,Enum.StateNames.INTERNET_ON,Enum.StateNames.PROCESSING_DOWNLOADS,Enum.StateNames.MOVIE_OFF,Enum.StateNames.USER_STATUS
@@ -33,6 +35,13 @@ public class Context implements IState{
 
         this.currentStates = new ArrayList<>();
         changeToOff();
+    }
+    //checks if there if enough space in the disk
+    public static boolean hasSpaceFor(double movieSize){
+        if(disk+movieSize<=maxDiskCapacity){
+            return true;
+        }
+        return false;
     }
 
     public AbstractState getOnCurrentState(Enum.OnRegionNames name)
