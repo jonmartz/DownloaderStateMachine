@@ -36,7 +36,34 @@ public class Context implements IState{
         this.currentStates = new ArrayList<>();
         changeToOff();
     }
-    //checks if there if enough space in the disk
+
+    /**
+     * This function checks if the machine is on
+     * @return - True IFF the machine is on
+     */
+    public boolean isOn() {
+        return isOn;
+    }
+
+    /**
+     * This function will try to add the movie to the queue
+     * @param movie - The given movie
+     * @return - True IFF the download succeeded
+     */
+    public boolean tryToAddToQueue(Movie movie)
+    {
+        if(this.movieQueue.size()>=1 || movie!=null)
+        {
+            return false;
+        }
+        this.movieQueue.add(movie);
+        return true;
+    }
+
+    /**
+     * This function checks if there if enough space in the disk
+     * @return - True IFF there is enough space
+     */
     public boolean hasSpaceFor(){
 
         if(movie == null)
@@ -59,6 +86,8 @@ public class Context implements IState{
             context = new Context();
         return context;
     }
+
+
     /**
      * This function will change the machine to ON state
      */
@@ -96,7 +125,8 @@ public class Context implements IState{
      */
     public boolean changeStateIfOn(Enum.OnRegionNames rName, Enum.StateNames sName)
     {
-        if(!isOn) return false;
+        if(!isOn || !this.locationMap.containsKey(rName) || sName == Enum.StateNames.RECEIVED_REQUEST)
+            return false;
 
         int loc = this.locationMap.get(rName);
         this.currentStates.get(loc).exit();
@@ -108,6 +138,14 @@ public class Context implements IState{
         }
 
         return true;
+    }
+
+    public void changeToRecivedRequest(Movie movie)
+    {
+        int loc = this.locationMap.get(Enum.OnRegionNames.GETTING_REQUESTS);
+        this.currentStates.get(loc).exit();
+        this.currentStates.set(loc,InitialStateFactory.getInstance().createRecivedRequest(movie));
+
     }
 
     /**
@@ -204,10 +242,10 @@ public class Context implements IState{
     }
 
     @Override
-    public void fileRequest() {
+    public void fileRequest(Movie movie) {
         for(int i=0;i<this.currentStates.size();i++)
         {
-            this.currentStates.get(i).fileRequest();
+            this.currentStates.get(i).fileRequest(movie);
         }
     }
 

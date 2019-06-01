@@ -67,7 +67,7 @@ public abstract class AbstractState implements IState {
     }
 
     @Override
-    public void fileRequest() {
+    public void fileRequest(Movie movie) {
 
     }
 

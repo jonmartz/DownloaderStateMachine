@@ -25,7 +25,7 @@ public class Main {
                 case "downloadError": c.downloadError(); break;
                 case "downloadReset": c.downloadReset(); break;
                 case "gettingRequest": c.gettingRequest(); break;
-                case "fileRequest": c.fileRequest(); break;
+                case "fileRequest": addNewMovie(); break;
                 case "processRequest": c.processRequest(); break;
                 case "movieOff": c.movieOff(); break;
                 case "movieOn": c.movieOn(); break;
@@ -51,5 +51,57 @@ public class Main {
             }
 
         }
+    }
+
+    public static void addNewMovie()
+    {
+        Context c = Context.getInstance();
+        if(Context.getInstance().isOn()) {
+            Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+
+            System.out.println("Input the name of the movie");
+            String name = scanner.nextLine();
+
+
+            boolean valid = false;
+            String size = "";
+            while (!valid) {
+                System.out.println("Input the size of the movie");
+                size = scanner.nextLine();
+                valid = isNumeric(size);
+                if (!valid) {
+                    System.out.println("Invalid input, try again");
+                    System.out.println();
+                }
+
+            }
+
+            valid = false;
+            String length = "";
+            while (!valid) {
+                System.out.println("Input the length of the movie");
+                length = scanner.nextLine();
+                valid = isNumeric(length);
+                if (!valid) {
+                    System.out.println("Invalid input, try again");
+                    System.out.println();
+                }
+            }
+
+            double given_size = Double.parseDouble(size);
+            double given_length = Double.parseDouble(length);
+
+            Movie movie = new Movie(name, given_length, given_size);
+            c.fileRequest(movie);
+        }
+
+    }
+    public static boolean isNumeric(String strNum) {
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException | NullPointerException nfe) {
+            return false;
+        }
+        return true;
     }
 }
