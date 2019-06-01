@@ -1,9 +1,13 @@
 public class RecivedRequest extends On {
-    public RecivedRequest()
+    public RecivedRequest(Movie newMovie)
     {
         super();
-        //Enter rest of the code if necessary
+        addRequest(newMovie);
         Context.getInstance().changeStateIfOn(Enum.OnRegionNames.GETTING_REQUESTS,Enum.StateNames.ACCEPTING_REQUEST);
+    }
+
+    public void addRequest(Movie newMovie){
+        Context.getInstance().movieQueue.add(newMovie);
     }
 
 }
