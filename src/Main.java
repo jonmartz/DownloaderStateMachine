@@ -50,7 +50,18 @@ public class Main {
             System.out.println("length: "+movie.getLengthInSeconds());
             System.out.println("size: "+movie.getSize());
             System.out.println("download progress: "+movie.checkDownloadProgress());
-            System.out.println("play time: "+Context.getInstance().playTime);
+            try {
+
+                AbstractState s = Context.getInstance().getOnCurrentState(Enum.OnRegionNames.PLAYING_MOVIES);
+                if (s instanceof PlayingMovie) {
+                    Context.getInstance().playTime = (int)((System.currentTimeMillis() -((PlayingMovie)s).start)/1000);
+                    System.out.println("play time: " + Context.getInstance().playTime);
+                }
+                else {
+                    System.out.println("movie not playing");
+                }
+            }
+            catch (Error e){ System.out.println("movie not playing"); }
         }
         else {
             System.out.println("there's no movie");

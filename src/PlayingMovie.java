@@ -1,7 +1,7 @@
 public class PlayingMovie extends MovieOn {
 
     private TimeEvent timeEvent;
-    private long start;
+    public long start;
     public PlayingMovie()
     {
         super();
