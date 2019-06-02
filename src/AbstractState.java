@@ -1,101 +1,121 @@
 public abstract class AbstractState implements IState {
+
+
+    protected AbstractState()
+    {
+        Class<?> enclosingClass = this.getClass().getEnclosingClass();
+        if (enclosingClass != null) {
+
+            System.out.println("enter "+enclosingClass.getName()+" state");
+        } else {
+            System.out.println("enter "+this.getClass().getName()+" state");
+        }
+    }
     @Override
-    public AbstractState turnOff() {
-        return this;
+    public void turnOff() {
+
     }
 
     @Override
-    public AbstractState turnOn() {
-        return this;
+    public void turnOn() {
+
     }
 
     @Override
-    public AbstractState internetOn() {
-        return this;
+    public void internetOn() {
+
     }
 
     @Override
-    public AbstractState internetOff() {
-        return this;
+    public void internetOff() {
+
     }
 
     @Override
-    public AbstractState downloadFinished() {
-        return this;
+    public void downloadFinished() {
+
     }
 
     @Override
-    public AbstractState downloadAborted() {
-        return this;
+    public void downloadAborted() {
+
     }
 
     @Override
-    public AbstractState downloadPaused() {
-        return this;
+    public void downloadPaused() {
+
     }
 
     @Override
-    public AbstractState downloadResumed() {
-        return this;
+    public void downloadResumed() {
+
     }
 
     @Override
-    public AbstractState downloadError() {
-        return this;
+    public void downloadError() {
+
     }
 
     @Override
-    public AbstractState downloadReset() {
-        return this;
+    public void downloadReset() {
+
     }
 
     @Override
-    public AbstractState gettingRequest() {
-        return this;
+    public void gettingRequest() {
+
     }
 
     @Override
-    public AbstractState fileRequest() {
-        return this;
+    public void fileRequest(Movie movie) {
+
     }
 
     @Override
-    public AbstractState processRequest() {
-        return this;
+    public void processRequest() {
+
     }
 
     @Override
-    public AbstractState movieOff() {
-        return this;
+    public void movieOff() {
+
     }
 
     @Override
-    public AbstractState movieOn() {
-        return this;
+    public void movieOn() {
+
     }
 
     @Override
-    public AbstractState holdMovie() {
-        return this;
+    public void holdMovie() {
+
     }
 
     @Override
-    public AbstractState restartMovie() {
-        return this;
+    public void restartMovie() {
+
     }
 
     @Override
-    public AbstractState errorFixed() {
-        return this;
+    public void errorFixed() {
+
     }
 
     @Override
-    public AbstractState resume() {
-        return this;
+    public void resume() {
+
     }
 
     @Override
     public void exit() {
-
+        Class<?> enclosingClass = this.getClass().getEnclosingClass();
+        if (enclosingClass != null) {
+            System.out.println("exit "+enclosingClass.getName()+" state");
+        } else {
+            System.out.println("exit "+this.getClass().getName()+" state");
+        }
     }
+
+    @Override
+    public void notifyTimerEnded(int eventID) { }
 }

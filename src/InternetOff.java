@@ -1,16 +1,13 @@
 public class InternetOff extends On {
     public InternetOff() {
-        System.out.println("enter InternetOff state");
-        Main.hasInternet = false;
+        super();
+        Context.getInstance().hasInternet=false;
     }
 
     @Override
-    public AbstractState internetOn() {
-        return new InternetOn();
+    public void internetOn() {
+        Context.getInstance().changeStateIfOn(Enum.OnRegionNames.IDENTIFY_INTERNET,Enum.StateNames.INTERNET_ON);
     }
 
-    @Override
-    public void exit() {
-        System.out.println("exit InternetOff state");
-    }
+
 }
