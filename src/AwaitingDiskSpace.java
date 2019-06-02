@@ -2,7 +2,9 @@ public class AwaitingDiskSpace extends ProcessingDownloads {
     public AwaitingDiskSpace()
     {
         super();
+        Context.getInstance().setOnCurrentState(Enum.OnRegionNames.MANAGING_REQUESTS,this);
         TimeEvent timeEvent = new TimeEvent(this,0,4);
+        timeEvent.start();
     }
 
     @Override

@@ -1,4 +1,4 @@
-public class TimeEvent implements Runnable{
+public class TimeEvent extends Thread {
 
     public IState state;
     public int eventID;

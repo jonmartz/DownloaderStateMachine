@@ -6,6 +6,7 @@ public class Beginner extends UserStatus {
     }
 
     public void enter(){
+        Context.getInstance().setOnCurrentState(Enum.OnRegionNames.MANEGERING_USER_STATUS,this);
         Context.getInstance().speed = 1.0;
         if (Context.getInstance().points>3){
             Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANEGERING_USER_STATUS,Enum.StateNames.ADVANCED);
