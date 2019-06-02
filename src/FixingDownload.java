@@ -25,6 +25,7 @@ public class FixingDownload extends ProcessingDownloads {
             String ans= scanner.nextLine();
 
             if(ans.toLowerCase().equals("y")) {
+                System.out.println("you entered 'y' (maybe it was too late already)");
                 hasError = false;
                 Context.getInstance().isFixed = true;
                 Context.getInstance().errorFixed();
