@@ -10,6 +10,7 @@ public class Movie {
     private long startDownload;//The time we started to download
     private double  downloadSpeed;//The download speed
     private TimeEvent downloader;//The downloading thread
+
     /**
      * The constructor
      * @param name - The name of the movie
@@ -24,6 +25,10 @@ public class Movie {
         this.downloadProgress=0;
         this.startDownload = -1;
 
+    }
+
+    public double getLengthInSeconds() {
+        return lengthInSeconds;
     }
 
     public String getName() {
@@ -44,7 +49,7 @@ public class Movie {
     public void startDownload()
     {
         this.startDownload =System.currentTimeMillis();
-        AbstractState currentUserStatus = Context.getInstance().getOnCurrentState(Enum.OnRegionNames.MANEGERING_USER_STATUS);
+
         int points = Context.getInstance().points;
         if(points<=3)
             downloadSpeed = 1;
@@ -107,7 +112,7 @@ public class Movie {
             this.startDownload =-1;
         }
         startDownload = now;
-        return downloadSpeed;
+        return downloadProgress;
     }
 
 
