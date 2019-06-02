@@ -86,11 +86,6 @@ public class Context implements IState{
         return this.currentStates.get(locationMap.get(name));
     }
 
-    public void setOnCurrentState(Enum.OnRegionNames name,AbstractState abstractState)
-    {
-        if(this.isOn)
-            this.currentStates.set(locationMap.get(name),abstractState);
-    }
 
     public static Context getInstance()
     {
@@ -159,13 +154,26 @@ public class Context implements IState{
                 return true;
             }
             this.currentStates.set(loc, abstractState);
-            if(sName == Enum.StateNames.PROCESSING_REQUEST)
-                ((ProcessingRequest)this.currentStates.get(loc)).entry();
+            if (sName == Enum.StateNames.PROCESSING_REQUEST)
+                ((ProcessingRequest) this.currentStates.get(loc)).entry();
+            else
+            {
+                if (sName == Enum.StateNames.RECEIVED_REQUEST)
+                    ((RecivedRequest) this.currentStates.get(loc)).entry();
+            }
             return true;
         }
         catch (UnexpectedException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+    public void setOnCurrentState(Enum.OnRegionNames name,AbstractState abstractState)
+    {
+        if(this.isOn) {
+            this.currentStates.set(locationMap.get(name), abstractState);
+           // if (abstractState instanceof RecivedRequest)
+             //   ((RecivedRequest) this.currentStates.get(locationMap.get(name))).entry();
         }
     }
 
@@ -174,6 +182,7 @@ public class Context implements IState{
         int loc = this.locationMap.get(Enum.OnRegionNames.GETTING_REQUESTS);
         this.currentStates.get(loc).exit();
         this.currentStates.set(loc,InitialStateFactory.getInstance().createRecivedRequest(movie));
+        ((RecivedRequest) this.currentStates.get(loc)).entry();
 
     }
 
