@@ -11,7 +11,7 @@ public class RecivedRequest extends On {
         }
         else
         {
-            System.out.println("The movie \""+movie.getName()+"\" was successfully added to the queue!" +"\nThe amount of remain disk space - "+Context.getInstance().getDiskSpace());
+            System.out.println("The movie \""+movie.getName()+"\" was successfully added to the queue");
         }
         Context.getInstance().changeStateIfOn(Enum.OnRegionNames.GETTING_REQUESTS,Enum.StateNames.ACCEPTING_REQUEST);
         Context.getInstance().processRequest();

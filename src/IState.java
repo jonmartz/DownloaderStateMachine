@@ -25,5 +25,5 @@ public interface IState {
     void resume();
     //entery and exit
     void exit();
-
+    void notifyTimerEnded(int eventID);
 }

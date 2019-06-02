@@ -21,7 +21,10 @@ public class Context implements IState{
     public double disk=0;
     public double maxDiskCapacity=100;
 
+    public boolean changingToOn; // to avoid states being created to fire 'enter' while building state list and cause a bug
+
     private static Context context;//The context
+
     private Context() {
         movieQueue= new LinkedList<>();
         locationMap = new HashMap<>();
@@ -103,6 +106,7 @@ public class Context implements IState{
      */
     private void changeToOn()
     {
+        this.changingToOn = true;
         this.isOn = true;
         try {
             exitCurrentStates();
@@ -110,6 +114,9 @@ public class Context implements IState{
         } catch (UnexpectedException e) {
             e.printStackTrace();
         }
+        this.changingToOn = false;
+        ((CheckPendingDownload)currentStates.get(2)).enter();
+        ((Beginner)currentStates.get(4)).enter();
     }
 
     /**
@@ -318,5 +325,10 @@ public class Context implements IState{
     @Override
     public void exit() {
         //There is no meaning?
+    }
+
+    @Override
+    public void notifyTimerEnded(int eventID) {
+
     }
 }

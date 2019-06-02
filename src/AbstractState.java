@@ -115,4 +115,7 @@ public abstract class AbstractState implements IState {
             System.out.println("exit "+this.getClass().getName()+" state");
         }
     }
+
+    @Override
+    public void notifyTimerEnded(int eventID) { }
 }
