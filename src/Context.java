@@ -146,13 +146,13 @@ public class Context implements IState{
         if(!isOn || !this.locationMap.containsKey(rName) || sName == Enum.StateNames.RECEIVED_REQUEST)
             return false;
 
-        if (sName == Enum.StateNames.PROCESSING_REQUEST){
-            try{
-                throw new IOException("setting processRequest");
-            }catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+//        if (sName == Enum.StateNames.PROCESSING_REQUEST){
+//            try{
+//                throw new IOException("setting processRequest");
+//            }catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         int loc = this.locationMap.get(rName);
         this.currentStates.get(loc).exit();
