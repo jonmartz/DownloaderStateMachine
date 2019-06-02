@@ -40,11 +40,15 @@ public class FixingDownload extends ProcessingDownloads {
     @Override
     public void errorFixed() {
         hasError = false;
+        Context.getInstance().isFixed = true;
         Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANAGING_REQUESTS,Enum.StateNames.DOWNLOADING_REQUEST);
     }
 
     @Override
     public void notifyTimerEnded(int eventID) {
-        if (hasError) Context.getInstance().downloadAborted();
+        if (hasError) {
+            Context.getInstance().isFixed = true;
+            Context.getInstance().downloadAborted();
+        }
     }
 }
