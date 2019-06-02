@@ -221,6 +221,7 @@ public class Context implements IState{
 
     @Override
     public void downloadFinished() {
+        this.disk += this.movie.getSize();
         for(int i=0;i<this.currentStates.size();i++)
         {
             this.currentStates.get(i).downloadFinished();
@@ -347,7 +348,11 @@ public class Context implements IState{
 
     @Override
     public void notifyTimerEnded(int eventID) {
-        //There is no meaning
+        if(eventID==2)
+        {
+            this.movie.checkDownloadProgress();
+            downloadFinished();
+        }
     }
 
     @Override

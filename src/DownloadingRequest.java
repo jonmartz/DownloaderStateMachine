@@ -45,4 +45,10 @@ public class DownloadingRequest extends ProcessingDownloads {
             startMovie();
         }
     }
+
+    @Override
+    public void exit() {
+        super.exit();
+        stopMovie();
+    }
 }
