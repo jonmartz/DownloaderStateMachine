@@ -6,15 +6,7 @@ public class DownloadingRequest extends ProcessingDownloads {
         Context.getInstance().setOnCurrentState(Enum.OnRegionNames.MANAGING_REQUESTS,this);
 
 
-        //Enter rest of the code if necessary
-        if(!Context.getInstance().hasInternet)
-        {
-            Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANAGING_REQUESTS,Enum.StateNames.AWAITING_INTERNET);
-        }
-        else
-        {
-            startMovie();
-        }
+
 
     }
 
@@ -32,5 +24,24 @@ public class DownloadingRequest extends ProcessingDownloads {
     {
         Context.getInstance().movie.stopDownload();
 
+    }
+
+    @Override
+    public void internetOff() {
+        stopMovie();
+        Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANAGING_REQUESTS,Enum.StateNames.AWAITING_INTERNET);
+    }
+
+    public void entry()
+    {
+        //Enter rest of the code if necessary
+        if(!Context.getInstance().hasInternet)
+        {
+            Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANAGING_REQUESTS,Enum.StateNames.AWAITING_INTERNET);
+        }
+        else
+        {
+            startMovie();
+        }
     }
 }

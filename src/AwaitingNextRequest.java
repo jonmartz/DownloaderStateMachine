@@ -5,10 +5,7 @@ public class AwaitingNextRequest extends ProcessingDownloads {
     {
         super();
         Context.getInstance().setOnCurrentState(Enum.OnRegionNames.MANAGING_REQUESTS,this);
-        Queue movie = Context.getInstance().movieQueue;
-        if (movie.size()>0){
-            Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANAGING_REQUESTS,Enum.StateNames.PROCESSING_REQUEST);
-        }
+
     }
 
     @Override
@@ -19,5 +16,12 @@ public class AwaitingNextRequest extends ProcessingDownloads {
     @Override
     public void exit(){
         super.exit();
+    }
+    public void entry()
+    {
+        Queue movie = Context.getInstance().movieQueue;
+        if (movie.size()>0){
+            Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANAGING_REQUESTS,Enum.StateNames.PROCESSING_REQUEST);
+        }
     }
 }

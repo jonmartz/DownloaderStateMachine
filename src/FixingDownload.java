@@ -41,8 +41,8 @@ public class FixingDownload extends ProcessingDownloads {
             else
             {
                 Context.getInstance().isFixed = false;
-                // TODO: 01/06/2019 If the error did not get fix
-                throw new NotImplementedException();
+                TimeEvent timeEvent = new TimeEvent(this,1,3);
+                timeEvent.start();
             }
         }
     }
@@ -50,5 +50,10 @@ public class FixingDownload extends ProcessingDownloads {
     @Override
     public void errorFixed() {
         Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANAGING_REQUESTS,Enum.StateNames.DOWNLOADING_REQUEST);
+    }
+
+    @Override
+    public void notifyTimerEnded(int eventID) {
+        Context.getInstance().downloadAborted();
     }
 }

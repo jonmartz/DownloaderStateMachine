@@ -112,7 +112,7 @@ public class Context implements IState{
             e.printStackTrace();
         }
         this.changingToOn = false;
-        ((CheckPendingDownload)currentStates.get(2)).enter();
+        ((CheckPendingDownload)currentStates.get(2)).entry();
         ((Beginner)currentStates.get(4)).enter();
     }
 
@@ -160,6 +160,26 @@ public class Context implements IState{
             {
                 if (sName == Enum.StateNames.RECEIVED_REQUEST)
                     ((RecivedRequest) this.currentStates.get(loc)).entry();
+                else
+                {
+                    if (sName == Enum.StateNames.DOWNLOADING_REQUEST)
+                        ((DownloadingRequest) this.currentStates.get(loc)).entry();
+                    else
+                    {
+                        if (sName == Enum.StateNames.CHECK_PENDING_DOWNLOAD)
+                            ((CheckPendingDownload) this.currentStates.get(loc)).entry();
+                        else
+                        {
+                            if (sName == Enum.StateNames.AWAITING_NEXT_REQUEST)
+                                ((AwaitingNextRequest) this.currentStates.get(loc)).entry();
+                            else
+                            {
+                                if (sName == Enum.StateNames.RESET_DOWNLOAD)
+                                    ((ResetDownload) this.currentStates.get(loc)).entry();
+                            }
+                        }
+                    }
+                }
             }
             return true;
         }
