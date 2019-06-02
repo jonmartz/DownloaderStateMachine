@@ -3,10 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static boolean hasInternet = true;
+
     public static InitialStateFactory factory = InitialStateFactory.getInstance();
 
-    public static void main(String[] args) throws UnexpectedException {
+    public static void main(String[] args) {
 
         Context c = Context.getInstance();
         Scanner scanner = new Scanner(System.in);
@@ -50,21 +50,6 @@ public class Main {
             System.out.println("You didn't input a number");
         }
     }
-
-    public static void print(List<AbstractState> l)
-    {
-        for (int i=0;i<l.size();i++)
-        {
-            Class<?> enclosingClass = l.get(i).getClass().getEnclosingClass();
-            if (enclosingClass != null) {
-                System.out.println(enclosingClass.getName());
-            } else {
-                System.out.println(l.get(i).getClass().getName());
-            }
-
-        }
-    }
-
     public static void addNewMovie()
     {
         Context c = Context.getInstance();
@@ -74,7 +59,10 @@ public class Main {
             System.out.println("Input the name of the movie");
             String name = scanner.nextLine();
 
-
+            if(name.equals("2"))
+            {
+                System.out.println();
+            }
             boolean valid = false;
             String size = "";
             while (!valid) {

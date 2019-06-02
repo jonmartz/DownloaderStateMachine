@@ -15,6 +15,7 @@ public class Context implements IState{
     private boolean isOn;//True iff the device in
     public  boolean hasInternet = true;
     public int points;
+    public boolean isFixed = false;
     public double speed = 1.0;
     public int playTime = 0;
     public Movie movie;
@@ -36,7 +37,7 @@ public class Context implements IState{
         locationMap.put(Enum.OnRegionNames.MANAGING_REQUESTS,2);
         locationMap.put(Enum.OnRegionNames.PLAYING_MOVIES,3);
         locationMap.put(Enum.OnRegionNames.MANEGERING_USER_STATUS,4);
-
+        isFixed = false;
         this.currentStates = new ArrayList<>();
         changeToOff();
     }
@@ -85,11 +86,6 @@ public class Context implements IState{
         return this.currentStates.get(locationMap.get(name));
     }
 
-    public void setOnCurrentState(Enum.OnRegionNames name,AbstractState abstractState)
-    {
-        if(this.isOn)
-            this.currentStates.set(locationMap.get(name),abstractState);
-    }
 
     public static Context getInstance()
     {
@@ -116,7 +112,7 @@ public class Context implements IState{
             e.printStackTrace();
         }
         this.changingToOn = false;
-        ((CheckPendingDownload)currentStates.get(2)).enter();
+        ((CheckPendingDownload)currentStates.get(2)).entry();
         ((Beginner)currentStates.get(4)).enter();
     }
 
@@ -145,25 +141,36 @@ public class Context implements IState{
     {
         if(!isOn || !this.locationMap.containsKey(rName) || sName == Enum.StateNames.RECEIVED_REQUEST)
             return false;
-
-//        if (sName == Enum.StateNames.PROCESSING_REQUEST){
-//            try{
-//                throw new IOException("setting processRequest");
-//            }catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        if(sName == Enum.StateNames.FIXING_DOWNLOAD && isFixed)
+        {
+            return true;
+        }
 
         int loc = this.locationMap.get(rName);
         this.currentStates.get(loc).exit();
         try {
-            this.currentStates.set(loc,InitialStateFactory.getInstance().getInitialStates(sName).get(0));
-        } catch (UnexpectedException e) {
+            AbstractState abstractState = InitialStateFactory.getInstance().getInitialStates(sName).get(0);
+            if (sName == Enum.StateNames.FIXING_DOWNLOAD && isFixed) {
+                return true;
+            }
+            this.currentStates.set(loc, abstractState);
+            this.currentStates.get(loc).entry();
+
+
+            return true;
+        }
+        catch (UnexpectedException e) {
             e.printStackTrace();
             return false;
         }
-
-        return true;
+    }
+    public void setOnCurrentState(Enum.OnRegionNames name,AbstractState abstractState)
+    {
+        if(this.isOn) {
+            this.currentStates.set(locationMap.get(name), abstractState);
+           // if (abstractState instanceof RecivedRequest)
+             //   ((RecivedRequest) this.currentStates.get(locationMap.get(name))).entry();
+        }
     }
 
     public void changeToRecivedRequest(Movie movie)
@@ -171,6 +178,7 @@ public class Context implements IState{
         int loc = this.locationMap.get(Enum.OnRegionNames.GETTING_REQUESTS);
         this.currentStates.get(loc).exit();
         this.currentStates.set(loc,InitialStateFactory.getInstance().createRecivedRequest(movie));
+        ((RecivedRequest) this.currentStates.get(loc)).entry();
 
     }
 
@@ -213,6 +221,7 @@ public class Context implements IState{
 
     @Override
     public void downloadFinished() {
+        this.disk += this.movie.getSize();
         for(int i=0;i<this.currentStates.size();i++)
         {
             this.currentStates.get(i).downloadFinished();
@@ -317,6 +326,7 @@ public class Context implements IState{
 
     @Override
     public void errorFixed() {
+        this.isFixed = true;
         for(int i=0;i<this.currentStates.size();i++)
         {
             this.currentStates.get(i).errorFixed();
@@ -333,11 +343,20 @@ public class Context implements IState{
 
     @Override
     public void exit() {
-        //There is no meaning?
+        //There is no meaning
     }
 
     @Override
     public void notifyTimerEnded(int eventID) {
+        if(eventID==2)
+        {
+            this.movie.checkDownloadProgress();
+            downloadFinished();
+        }
+    }
 
+    @Override
+    public void entry() {
+        //There is no meaning
     }
 }
