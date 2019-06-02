@@ -15,6 +15,7 @@ public class Context implements IState{
     private boolean isOn;//True iff the device in
     public  boolean hasInternet = true;
     public int points;
+    public boolean isFixed = false;
     public double speed = 1.0;
     public int playTime = 0;
     public Movie movie;
@@ -36,7 +37,7 @@ public class Context implements IState{
         locationMap.put(Enum.OnRegionNames.MANAGING_REQUESTS,2);
         locationMap.put(Enum.OnRegionNames.PLAYING_MOVIES,3);
         locationMap.put(Enum.OnRegionNames.MANEGERING_USER_STATUS,4);
-
+        isFixed = false;
         this.currentStates = new ArrayList<>();
         changeToOff();
     }
@@ -145,25 +146,27 @@ public class Context implements IState{
     {
         if(!isOn || !this.locationMap.containsKey(rName) || sName == Enum.StateNames.RECEIVED_REQUEST)
             return false;
-
-//        if (sName == Enum.StateNames.PROCESSING_REQUEST){
-//            try{
-//                throw new IOException("setting processRequest");
-//            }catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        if(sName == Enum.StateNames.FIXING_DOWNLOAD && isFixed)
+        {
+            return true;
+        }
 
         int loc = this.locationMap.get(rName);
         this.currentStates.get(loc).exit();
         try {
-            this.currentStates.set(loc,InitialStateFactory.getInstance().getInitialStates(sName).get(0));
-        } catch (UnexpectedException e) {
+            AbstractState abstractState = InitialStateFactory.getInstance().getInitialStates(sName).get(0);
+            if (sName == Enum.StateNames.FIXING_DOWNLOAD && isFixed) {
+                return true;
+            }
+            this.currentStates.set(loc, abstractState);
+            if(sName == Enum.StateNames.PROCESSING_REQUEST)
+                ((ProcessingRequest)this.currentStates.get(loc)).entry();
+            return true;
+        }
+        catch (UnexpectedException e) {
             e.printStackTrace();
             return false;
         }
-
-        return true;
     }
 
     public void changeToRecivedRequest(Movie movie)
@@ -317,6 +320,7 @@ public class Context implements IState{
 
     @Override
     public void errorFixed() {
+        this.isFixed = true;
         for(int i=0;i<this.currentStates.size();i++)
         {
             this.currentStates.get(i).errorFixed();
