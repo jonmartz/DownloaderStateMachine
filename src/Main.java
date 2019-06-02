@@ -35,9 +35,40 @@ public class Main {
                 case "resume": c.resume(); break;
                 case "exit": c.exit(); exit = true; break;
                 case "changeDisk": changeDisk(); break;
+                case "checkDisk": checkDisk(); break;
+                case "checkPoints": checkPoints(); break;
+                case "checkMovie": checkMovie(); break;
                 default: System.out.println("invalid input"); break;
             }
         }
+    }
+
+    private static void checkMovie() {
+        Movie movie = Context.getInstance().movie;
+        if (movie != null){
+            System.out.println("name: "+movie.getName());
+            System.out.println("length: "+movie.getLengthInSeconds());
+            System.out.println("size: "+movie.getSize());
+            System.out.println("download progress: "+movie.checkDownloadProgress());
+            System.out.println("play time: "+Context.getInstance().playTime);
+        }
+        else {
+            System.out.println("there's no movie");
+        }
+        System.out.println();
+
+    }
+
+    private static void checkPoints() {
+        System.out.println("points: "+Context.getInstance().points);
+        System.out.println("download speed: "+Context.getInstance().speed);
+        System.out.println();
+    }
+
+    private static void checkDisk() {
+        System.out.println("max disk size: "+Context.getInstance().maxDiskCapacity);
+        System.out.println("available space: "+Context.getInstance().getDiskSpace());
+        System.out.println();
     }
 
     private static void changeDisk() {
