@@ -32,6 +32,7 @@ public class DownloadingRequest extends ProcessingDownloads {
         Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANAGING_REQUESTS,Enum.StateNames.AWAITING_INTERNET);
     }
 
+    @Override
     public void entry()
     {
         //Enter rest of the code if necessary

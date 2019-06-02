@@ -26,4 +26,5 @@ public interface IState {
     //entery and exit
     void exit();
     void notifyTimerEnded(int eventID);
+    void entry();
 }

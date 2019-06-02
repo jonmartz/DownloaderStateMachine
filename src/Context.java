@@ -154,33 +154,9 @@ public class Context implements IState{
                 return true;
             }
             this.currentStates.set(loc, abstractState);
-            if (sName == Enum.StateNames.PROCESSING_REQUEST)
-                ((ProcessingRequest) this.currentStates.get(loc)).entry();
-            else
-            {
-                if (sName == Enum.StateNames.RECEIVED_REQUEST)
-                    ((RecivedRequest) this.currentStates.get(loc)).entry();
-                else
-                {
-                    if (sName == Enum.StateNames.DOWNLOADING_REQUEST)
-                        ((DownloadingRequest) this.currentStates.get(loc)).entry();
-                    else
-                    {
-                        if (sName == Enum.StateNames.CHECK_PENDING_DOWNLOAD)
-                            ((CheckPendingDownload) this.currentStates.get(loc)).entry();
-                        else
-                        {
-                            if (sName == Enum.StateNames.AWAITING_NEXT_REQUEST)
-                                ((AwaitingNextRequest) this.currentStates.get(loc)).entry();
-                            else
-                            {
-                                if (sName == Enum.StateNames.RESET_DOWNLOAD)
-                                    ((ResetDownload) this.currentStates.get(loc)).entry();
-                            }
-                        }
-                    }
-                }
-            }
+            this.currentStates.get(loc).entry();
+
+
             return true;
         }
         catch (UnexpectedException e) {
@@ -366,11 +342,16 @@ public class Context implements IState{
 
     @Override
     public void exit() {
-        //There is no meaning?
+        //There is no meaning
     }
 
     @Override
     public void notifyTimerEnded(int eventID) {
+        //There is no meaning
+    }
 
+    @Override
+    public void entry() {
+        //There is no meaning
     }
 }

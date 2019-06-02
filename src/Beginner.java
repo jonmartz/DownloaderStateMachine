@@ -2,6 +2,11 @@ public class Beginner extends UserStatus {
     public Beginner()
     {
         super();
+
+    }
+
+    @Override
+    public void entry() {
         if (!Context.getInstance().changingToOn) enter(); // wait for Context's state list creation to complete
     }
 

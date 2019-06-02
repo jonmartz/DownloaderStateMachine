@@ -6,6 +6,8 @@ public class ResetDownload extends On {
         Context.getInstance().movie=null;
 
     }
+
+    @Override
     public void entry()
     {
         Context.getInstance().changeStateIfOn(Enum.OnRegionNames.MANAGING_REQUESTS,Enum.StateNames.CHECK_PENDING_DOWNLOAD);

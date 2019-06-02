@@ -17,6 +17,11 @@ public abstract class AbstractState implements IState {
     }
 
     @Override
+    public void entry() {
+
+    }
+
+    @Override
     public void turnOn() {
 
     }

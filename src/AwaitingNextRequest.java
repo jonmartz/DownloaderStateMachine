@@ -17,6 +17,8 @@ public class AwaitingNextRequest extends ProcessingDownloads {
     public void exit(){
         super.exit();
     }
+
+    @Override
     public void entry()
     {
         Queue movie = Context.getInstance().movieQueue;
